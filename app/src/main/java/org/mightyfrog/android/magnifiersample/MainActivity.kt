@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             .setCornerRadius(300f)
             .setElevation(20f)
             .setInitialZoom(4f)
-            .setSize(600, 600)
+            .setSize(size, size)
             .build()
 
         binding.imageView.setOnTouchListener { v, event ->
@@ -28,7 +28,9 @@ class MainActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
                     val viewPosition = IntArray(2)
                     v.getLocationOnScreen(viewPosition)
-                    magnifier.show(event.rawX - viewPosition[0], event.rawY - viewPosition[1])
+                    val x = event.rawX - viewPosition[0]
+                    val y = event.rawY - viewPosition[1]
+                    magnifier.show(x, y, x, y - size / 2)
                 }
                 MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
                     magnifier.dismiss()
@@ -37,5 +39,10 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+    }
+
+    companion object {
+
+        const val size = 600
     }
 }
