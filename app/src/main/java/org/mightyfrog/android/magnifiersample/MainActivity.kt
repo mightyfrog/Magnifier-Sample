@@ -17,9 +17,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val magnifier = Magnifier.Builder(binding.imageView)
-            .setCornerRadius(300f)
-            .setElevation(20f)
-            .setInitialZoom(4f)
+            .setCornerRadius(cornerRadius)
+            .setElevation(elevation)
+            .setInitialZoom(initialZoom)
             .setSize(size, size)
             .build()
 
@@ -44,5 +44,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
 
         const val size = 600
+        const val cornerRadius = 300f
+        const val elevation = 20f
+        const val initialZoom =4f
     }
 }
